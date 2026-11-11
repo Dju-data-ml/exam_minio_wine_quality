@@ -1,9 +1,88 @@
 services:
   pipeline:
-
+    image: exam/pipeline
+    build:
+      context: .
+      dockerfile: ./docker/pipeline/Dockerfile
+    environment:
+      - DATA_BUCKET=${DATA_BUCKET}
+      - AWS_ACCESS_KEY_ID=${MINIO_ROOT_USER}
+      - AWS_SECRET_ACCESS_KEY=${MINIO_ROOT_PASSWORD}
+    container_name: pipeline
+    restart: no
+    volumes:
+      - ./:/app
+    depends_on:
+      minio:
+        condition: service_healthy
+    post_start:
+      - command: ["sh", "-c", "/app/init_dvc.sh"]
   minio:
-
+    image: exam/minio
+    build:
+      context: ./docker/minio
+      dockerfile: Dockerfile
+    container_name: minio_server
+    restart: always
+    ports:
+      - "${MINIO_PORT}:9000"
+      - "${MINIO_CONSOLE_PORT}:9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MLFLOW_BUCKET=${MLFLOW_BUCKET}
+      - DATA_BUCKET=${DATA_BUCKET}
+    volumes:
+      - minio_data:/data
+    post_start:
+      - command: ["sh", "-c", "/init_minio.sh"]
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    
   mlflow:
+    image: exam/mlflow
+    build:
+      context: ./docker/mlflow
+      dockerfile: Dockerfile 
+    container_name: mlflow_server
+    restart: always
+    ports:
+      - "${MLFLOW_PORT}:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI}
+      - MLFLOW_ARTIFACT_URI=s3://${MLFLOW_BUCKET}
+      - AWS_ACCESS_KEY_ID=${MINIO_ROOT_USER}
+      - AWS_SECRET_ACCESS_KEY=${MINIO_ROOT_PASSWORD}
+      - MLFLOW_S3_ENDPOINT_URL=${MINIO_ENDPOINT}
+    volumes:
+      - mlflow_data:/mlflow
+    depends_on:
+      minio:
+        condition: service_healthy
+    command:
+      - /bin/bash
+      - -c
+      - |
+        mlflow server \
+          --artifacts-destination "s3://${MLFLOW_BUCKET}" \
+          --serve-artifacts \
+          --host "0.0.0.0" \
+          --allowed-hosts "*"\
+          --port "${MLFLOW_PORT}"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:${MLFLOW_PORT}/health')",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
 
   tests:
       build:
@@ -20,3 +99,7 @@ services:
         - MINIO_DATA_BUCKET=dvc-storage
         - MINIO_MLFLOW_BUCKET=mlflow-artifacts
         - MLFLOW_TRACKING_URI="http://mlflow:5000"
+
+volumes:
+  minio_data:
+  mlflow_data:

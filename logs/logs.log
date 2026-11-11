@@ -1025,3 +1025,185 @@ x=======x
 2025-04-28 13:44:36,663 - custom_logger - INFO - >>>>> stage Model evaluation stage completed <<<<< 
 
  x========x
+2026-11-11 10:34:55,282 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 10:37:30,605 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 10:39:19,068 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 11:09:40,940 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 11:09:42,179 - pipeline.custom_logger - INFO - Parent folder: /home/julien/exams-liora/exam_minio_wine_quality/src
+2026-11-11 11:09:42,179 - pipeline.custom_logger - INFO - >>>>> stage Data Ingestion stage started <<<<<
+2026-11-11 11:09:42,182 - pipeline.custom_logger - INFO - yaml file: src/pipeline/config.yaml loaded successfully
+2026-11-11 11:09:42,183 - pipeline.custom_logger - INFO - yaml file: src/pipeline/models_module_def/params.yaml loaded successfully
+2026-11-11 11:09:42,184 - pipeline.custom_logger - INFO - yaml file: src/pipeline/data_module_def/schema.yaml loaded successfully
+2026-11-11 11:09:42,184 - pipeline.custom_logger - INFO - created directory at: data/raw
+2026-11-11 11:09:42,732 - pipeline.custom_logger - INFO - data/raw/data.zip download! With following info: 
+Connection: close
+Content-Length: 23329
+Cache-Control: max-age=300
+Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+Content-Type: application/zip
+ETag: "c69888a4ae59bc5a893392785a938ccd4937981c06ba8a9d6a21aa52b4ab5b6e"
+Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+X-Frame-Options: deny
+X-XSS-Protection: 1; mode=block
+X-GitHub-Request-Id: 4BCC:122F1:1E569B:252826:6AF44CF6
+x-github-edge-region: uksouth
+Accept-Ranges: bytes
+Date: Wed, 11 Nov 2026 11:09:42 GMT
+Via: 1.1 varnish
+X-Served-By: cache-lcy-egml8630084-LCY
+X-Cache: MISS
+X-Cache-Hits: 0
+X-Timer: S1794395383.504351,VS0,VE220
+Vary: Authorization,Accept-Encoding
+Access-Control-Allow-Origin: *
+Cross-Origin-Resource-Policy: cross-origin
+X-Fastly-Request-ID: 64549ee9d84ca6dd7fbd1af9a0bef5524dbf7748
+Expires: Wed, 11 Nov 2026 11:14:42 GMT
+Source-Age: 0
+
+
+2026-11-11 11:09:42,736 - pipeline.custom_logger - INFO - >>>>> stage Data Ingestion stage completed <<<<<
+
+x=======x
+2026-11-11 11:10:03,371 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 11:10:05,157 - pipeline.custom_logger - INFO - >>>>> stage Data Validation stage started <<<<<
+2026-11-11 11:10:05,159 - pipeline.custom_logger - INFO - yaml file: src/pipeline/config.yaml loaded successfully
+2026-11-11 11:10:05,160 - pipeline.custom_logger - INFO - yaml file: src/pipeline/models_module_def/params.yaml loaded successfully
+2026-11-11 11:10:05,161 - pipeline.custom_logger - INFO - yaml file: src/pipeline/data_module_def/schema.yaml loaded successfully
+2026-11-11 11:10:05,162 - pipeline.custom_logger - INFO - created directory at: data
+2026-11-11 11:10:05,190 - pipeline.custom_logger - INFO - >>>>> stage Data Validation stage completed <<<<<
+
+x=======x
+2026-11-11 11:10:29,656 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 11:10:33,304 - pipeline.custom_logger - INFO - >>>>> stage Data Transformation stage started <<<<<
+2026-11-11 11:10:33,308 - pipeline.custom_logger - INFO - yaml file: src/pipeline/config.yaml loaded successfully
+2026-11-11 11:10:33,309 - pipeline.custom_logger - INFO - yaml file: src/pipeline/models_module_def/params.yaml loaded successfully
+2026-11-11 11:10:33,311 - pipeline.custom_logger - INFO - yaml file: src/pipeline/data_module_def/schema.yaml loaded successfully
+2026-11-11 11:10:33,311 - pipeline.custom_logger - INFO - created directory at: data/processed
+2026-11-11 11:10:33,353 - pipeline.custom_logger - INFO - Splitted data into training and test sets
+2026-11-11 11:10:33,353 - pipeline.custom_logger - INFO - X_train shape: (1279, 11), y_train shape: (1279,)
+2026-11-11 11:10:33,353 - pipeline.custom_logger - INFO - X_test shape: (320, 11), y_test shape: (320,)
+2026-11-11 11:10:33,353 - pipeline.custom_logger - INFO - >>>>> stage Data Transformation stage completed <<<<<
+
+x=======x
+2026-11-11 11:10:43,185 - pipeline.custom_logger - INFO - Custom logger module initialized.
+2026-11-11 11:10:48,427 - pipeline.custom_logger - INFO - >>>>> stage Model trainer stage started <<<<<
+2026-11-11 11:10:48,430 - pipeline.custom_logger - INFO - yaml file: src/pipeline/config.yaml loaded successfully
+2026-11-11 11:10:48,431 - pipeline.custom_logger - INFO - yaml file: src/pipeline/models_module_def/params.yaml loaded successfully
+2026-11-11 11:10:48,432 - pipeline.custom_logger - INFO - yaml file: src/pipeline/data_module_def/schema.yaml loaded successfully
+2026-11-11 11:10:48,432 - pipeline.custom_logger - INFO - created directory at: models
+2026-11-11 11:10:52,335 - urllib3.connectionpool - WARNING - Retrying (Retry(total=6, connect=6, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:11:01,220 - urllib3.connectionpool - WARNING - Retrying (Retry(total=5, connect=5, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:11:14,079 - urllib3.connectionpool - WARNING - Retrying (Retry(total=4, connect=4, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:11:34,899 - urllib3.connectionpool - WARNING - Retrying (Retry(total=3, connect=3, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:12:11,603 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=2, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:13:20,285 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:15:24,086 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=7, redirect=7, status=7)) after connection broken by 'NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction
+2026-11-11 11:15:28,086 - pipeline.custom_logger - ERROR - API request to http://mlflow:5000/api/2.0/mlflow/experiments/get-by-name failed with exception HTTPConnectionPool(host='mlflow', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction (Caused by NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)"))
+Traceback (most recent call last):
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/.local/share/uv/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/socket.py", line 974, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 499, in _make_request
+    conn.request(
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 567, in request
+    self.endheaders()
+  File "/home/julien/.local/share/uv/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/http/client.py", line 1346, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/julien/.local/share/uv/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/http/client.py", line 1106, in _send_output
+    self.send(msg)
+  File "/home/julien/.local/share/uv/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/http/client.py", line 1044, in send
+    self.connect()
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 398, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 246, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 886, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 886, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 886, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  [Previous line repeated 4 more times]
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='mlflow', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction (Caused by NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/utils/rest_utils.py", line 373, in http_request
+    return _get_http_response_with_retries(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/utils/request_utils.py", line 322, in _get_http_response_with_retries
+    return session.request(method, url, allow_redirects=allow_redirects, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='mlflow', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction (Caused by NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/julien/exams-liora/exam_minio_wine_quality/src/pipeline/pipeline_steps/stage04_model_trainer.py", line 28, in <module>
+    obj.main()
+  File "/home/julien/exams-liora/exam_minio_wine_quality/src/pipeline/pipeline_steps/stage04_model_trainer.py", line 21, in main
+    model_trainer = ModelTrainer(config= model_trainer_config)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/src/pipeline/models_module_def/model_trainer.py", line 17, in __init__
+    mlflow.set_experiment("Wine Quality Prediction")
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/tracking/fluent.py", line 208, in set_experiment
+    experiment = client.get_experiment_by_name(experiment_name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/tracking/_tracking_service/client.py", line 282, in get_experiment_by_name
+    return self.store.get_experiment_by_name(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/store/tracking/rest_store.py", line 1552, in get_experiment_by_name
+    response_proto = self._call_endpoint(GetExperimentByName, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/store/tracking/rest_store.py", line 275, in _call_endpoint
+    return call_endpoint(
+           ^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/utils/rest_utils.py", line 753, in call_endpoint
+    response = http_request(**call_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/julien/exams-liora/exam_minio_wine_quality/.venv/lib/python3.11/site-packages/mlflow/utils/rest_utils.py", line 398, in http_request
+    raise MlflowException(f"API request to {url} failed with exception {e}")
+mlflow.exceptions.MlflowException: API request to http://mlflow:5000/api/2.0/mlflow/experiments/get-by-name failed with exception HTTPConnectionPool(host='mlflow', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=Wine+Quality+Prediction (Caused by NameResolutionError("HTTPConnection(host='mlflow', port=5000): Failed to resolve 'mlflow' ([Errno -2] Name or service not known)"))

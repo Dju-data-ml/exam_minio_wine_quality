@@ -1,4 +1,10 @@
-tests:
-	docker-compose up --no-deps tests
+build:
+	docker compose build
 
-.PHONY: tests
+start:
+	docker compose up -d
+
+tests:
+	docker compose up --no-deps tests
+
+.PHONY: tests start build

@@ -1,0 +1,36 @@
+[project]
+name = "exam-minio-wine-quality"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "dju-techMl", email = "jleroux.services@pm.me" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "dagshub>=0.7.3",
+    "dvc[s3]>=3.67.1",
+    "ensure==1.0.4",
+    "fastapi>=0.162.4",
+    "joblib>=1.6.0",
+    "matplotlib>=3.11.2",
+    "mlflow>=3.17.0",
+    "notebook>=7.6.5",
+    "numpy>=2.0",
+    "pandas>=3.1.1",
+    "pydantic>=2.7.4",
+    "python-box==6.0.2",
+    "python-multipart>=0.0.33",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
+    "tqdm>=4.70.1",
+    "types-pyyaml>=6.0.12.20261111",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+exam-minio-wine-quality = "exam_minio_wine_quality:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
