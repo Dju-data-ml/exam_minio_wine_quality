@@ -1,5 +1,6 @@
 .env
 __pycache__
 main.py
-data/
 **/__pycache__/
+.dvc/
+.venv/

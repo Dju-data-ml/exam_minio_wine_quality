@@ -6,6 +6,8 @@ services:
       dockerfile: ./docker/pipeline/Dockerfile
     environment:
       - DATA_BUCKET=${DATA_BUCKET}
+      - MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI}
+      - MINIO_ENDPOINT_URL=${MINIO_ENDPOINT}
       - AWS_ACCESS_KEY_ID=${MINIO_ROOT_USER}
       - AWS_SECRET_ACCESS_KEY=${MINIO_ROOT_PASSWORD}
     container_name: pipeline
@@ -15,8 +17,10 @@ services:
     depends_on:
       minio:
         condition: service_healthy
-    post_start:
-      - command: ["sh", "-c", "/app/init_dvc.sh"]
+      mlflow:
+        condition: service_healthy
+    command: ["sh", "-c", "/app/docker/pipeline/init_dvc.sh"]
+  
   minio:
     image: exam/minio
     build:
@@ -71,6 +75,8 @@ services:
           --serve-artifacts \
           --host "0.0.0.0" \
           --allowed-hosts "*"\
+          --cors-allowed-origins "*"\
+          --backend-store-uri sqlite:///mlflow.db\
           --port "${MLFLOW_PORT}"
     healthcheck:
       test:

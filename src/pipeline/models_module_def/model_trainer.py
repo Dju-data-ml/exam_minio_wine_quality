@@ -30,7 +30,8 @@ class ModelTrainer:
 
         with mlflow.start_run():
             # Log the parameters of your model here
-            # Your code here
+            mlflow.log_param("alpha", self.config.alpha)
+            mlflow.log_param("l1_ratio", self.config.l1_ratio)
 
             lr = ElasticNet(alpha = self.config.alpha, l1_ratio = self.config.l1_ratio, random_state=42)
             lr.fit(X_train, y_train)
@@ -38,6 +39,10 @@ class ModelTrainer:
             (rmse, mae, r2) = self.eval_metrics(y_test, lr.predict(X_test))
 
             # Track metrics and model with mlflow
-            # Your code here
+            mlflow.log_metric("rmse", rmse)
+            mlflow.log_metric("mae", mae)
+            mlflow.log_metric("r2", r2)
 
+            # sign the model with an input example (first row suffice)
+            mlflow.sklearn.log_model(lr, "model", input_example=X_train.iloc[[0]])
             joblib.dump(lr, os.path.join(self.config.root_dir, self.config.model_name))
